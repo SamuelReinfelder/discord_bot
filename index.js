@@ -1,13 +1,21 @@
 const Discord = require("discord.js");
-const config = require("./config.json");
 const fs = require('fs');
 const yaml = require('js-yaml');
-const { getHeapCodeStatistics } = require("v8");
+const { prefix, token } = require('./config.json');
+
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 const client = new Discord.Client();
+client.commands = new Discord.Collection();
 
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	client.commands.set(command.name, command);
+}
 
-client.on('ready', () => {
+client.login(token);
+
+client.once('ready', () => {
 
 	client.user.setStatus('invisible');
 
@@ -52,9 +60,21 @@ client.on("voiceStateUpdate", function (oldMember, newMember) {
 
 });
 
+client.on('message', message => {
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-client.login(config.BOT_TOKEN);
+	const args = message.content.slice(prefix.length).trim().split(/ +/);
+	const command = args.shift().toLowerCase();
 
+	if (!client.commands.has(command)) return;
+
+	try {
+		client.commands.get(command).execute(message, args, client, token);
+	} catch (error) {
+		console.error(error);
+		message.reply('there was an error trying to execute that command!');
+	}
+});
 
 function writeData(data,id) {
 	var dir = './server';
