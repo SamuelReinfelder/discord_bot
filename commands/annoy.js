@@ -23,7 +23,7 @@ module.exports = {
                 let moveChannel = c.id;
                 let member = message.guild.members.cache.get(authorID);
 
-                for (let i=0;i<10;i++) {
+                for (let i=0;i<5;i++) {
                     member.voice.setChannel(moveChannel);
                     member.voice.setChannel(startChannel);
                 }
