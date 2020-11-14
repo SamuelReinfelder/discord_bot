@@ -6,10 +6,10 @@ module.exports = {
         let commands = client.commands;
         let names = "";
         commands.forEach(c => {
-            names = names + c.name + "\n";
+            names = names + "__" + c.name + "__: " + c.description + "\n";
         });
 
-        let info = "Es stehen folgende Befehle zur Verfügung:";
+        let info = "**Es stehen folgende Befehle zur Verfügung**";
         message.channel.send(info);
 
         message.channel.send(names);
