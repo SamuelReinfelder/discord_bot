@@ -44,6 +44,7 @@ module.exports = {
                 moveChannels.push(c.id);
             }
         });
+        moveChannels.push(startChannel);
 
         if (moveChannels.length < amount) {
             message.channel.send("Zuwenig freie Channels verfügbar.");
