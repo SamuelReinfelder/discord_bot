@@ -18,6 +18,7 @@ client.login(token);
 client.once('ready', () => {
 
 	client.user.setStatus('invisible');
+	bot.user.setUsername("Bot (!help)");
 
 	client.guilds.cache.forEach((guild) => {
 		let data = {
