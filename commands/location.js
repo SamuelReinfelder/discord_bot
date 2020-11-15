@@ -1,6 +1,6 @@
 module.exports = {
     name: 'locations',
-    description: 'List of warzonme locations.',
+    description: 'List of warzone locations.',
     execute(message, args, client, token) {
 
         locations = [
@@ -23,11 +23,9 @@ module.exports = {
             "Storage Town",
             "Prison",
             "Farmland"
-        
-        
         ];
 
-        var location = locations[Math.floor(Math.random() * locations.length)];
+        let location = locations[Math.floor(Math.random() * locations.length)];
 
         message.reply("Dorthin gehts: " + location);
     },
