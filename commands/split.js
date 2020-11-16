@@ -1,7 +1,7 @@
 module.exports = {
     name: 'split',
     description: 'Split channel members in several channels.',
-    execute(message, args, client, token) {
+    execute(message, args, client, config) {
 
         const amount = parseInt(args[0]);
         const splitValues = [2, 3, 4];

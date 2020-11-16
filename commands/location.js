@@ -1,7 +1,7 @@
 module.exports = {
     name: 'locations',
     description: 'List of warzone locations.',
-    execute(message, args, client, token) {
+    execute(message, args, client, config) {
 
         locations = [
             "Downtown",

@@ -3,7 +3,7 @@ const { MessageFlags } = require("discord.js");
 module.exports = {
     name: 'annoy',
     description: 'Change channel rapidly.',
-    execute(message, args, client, token) {
+    execute(message, args, client, config) {
 
         let currentChannel = message.channel.id;
         let authorID = message.author.id;

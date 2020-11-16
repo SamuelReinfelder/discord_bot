@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const fs = require('fs');
 const yaml = require('js-yaml');
-const { prefix, token } = require('./config.json');
+const config = require('./config.json');
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -13,7 +13,7 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
-client.login(token);
+client.login(config.token);
 
 client.once('ready', () => {
 
@@ -62,15 +62,15 @@ client.on("voiceStateUpdate", function (oldMember, newMember) {
 });
 
 client.on('message', message => {
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+	if (!message.content.startsWith(config.prefix) || message.author.bot) return;
 
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
+	const args = message.content.slice(config.prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
 
 	if (!client.commands.has(command)) return;
 
 	try {
-		client.commands.get(command).execute(message, args, client, token);
+		client.commands.get(command).execute(message, args, client, config);
 	} catch (error) {
 		console.error(error);
 		message.reply('there was an error trying to execute that command!');
