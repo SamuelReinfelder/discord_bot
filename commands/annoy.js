@@ -28,6 +28,8 @@ module.exports = {
                     member.voice.setChannel(startChannel);
                 }
 
+                break;
+
                 return;
             }
 
