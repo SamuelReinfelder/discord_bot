@@ -16,24 +16,13 @@ module.exports = {
             return;
 
         // Find empty channel to move to
-        message.guild.channels.cache.forEach(c => {
-            if (c.type == "voice" && c.id != author.channelID) {
-                console.log(c.id);
-                let startChannel = author.channelID;
-                let moveChannel = c.id;
-                let member = message.guild.members.cache.get(authorID);
+        let moveChannel =  message.guild.channels.cache.find(c => c.id != author.channelID && c.type == "voice");
+        let startChannel = author.channelID;
+        let member = message.guild.members.cache.get(authorID);
 
-                for (let i=0;i<5;i++) {
-                    member.voice.setChannel(moveChannel);
-                    member.voice.setChannel(startChannel);
-                }
-
-                break;
-
-                return;
-            }
-
-        });
-        ;
+        for (let i=0;i<3;i++) {
+            member.voice.setChannel(moveChannel);
+            member.voice.setChannel(startChannel);
+        }
     },
 };
