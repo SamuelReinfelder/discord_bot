@@ -17,6 +17,10 @@ module.exports = {
 
         // Find empty channel to move to
         let moveChannel =  message.guild.channels.cache.find(c => c.id != author.channelID && c.type == "voice");
+
+        if(moveChannel == undefined)
+            return;
+
         let startChannel = author.channelID;
         let member = message.guild.members.cache.get(authorID);
 
