@@ -27,6 +27,9 @@ module.exports = {
 
         let location = locations[Math.floor(Math.random() * locations.length)];
 
-        message.reply("Dorthin gehts: " + location);
+        message.reply("Dorthin gehts: " + location).then(msg => {
+            msg.delete({ timeout: 10000 });
+            message.delete();
+          });
     },
 };
