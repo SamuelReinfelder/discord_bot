@@ -58,6 +58,5 @@ module.exports = {
         for(let i=0;i<memberIds.length;i++) {
             message.guild.members.cache.get(memberIds[i]).voice.setChannel(moveChannels[i%amount]);
         }
-        message.delete();
     },
 };

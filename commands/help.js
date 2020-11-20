@@ -12,7 +12,6 @@ module.exports = {
         let info = "**Es stehen folgende Befehle zur Verfügung**\n" + names;
         message.channel.send(info).then(msg => {
             msg.delete({ timeout: 5000 });
-            message.delete();
           });
     },
 };

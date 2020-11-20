@@ -75,6 +75,7 @@ client.on('message', message => {
 		console.error(error);
 		message.reply('there was an error trying to execute that command!');
 	}
+	message.delete();
 });
 
 function writeData(data,id) {

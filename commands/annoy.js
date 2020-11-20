@@ -24,8 +24,6 @@ module.exports = {
         let startChannel = author.channelID;
         let member = message.guild.members.cache.get(authorID);
 
-        message.delete();
-
         for (let i=0;i<3;i++) {
             member.voice.setChannel(moveChannel);
             member.voice.setChannel(startChannel);

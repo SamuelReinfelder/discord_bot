@@ -29,7 +29,6 @@ module.exports = {
 
         message.reply("Dorthin gehts: " + location).then(msg => {
             msg.delete({ timeout: 10000 });
-            message.delete();
           });
     },
 };
