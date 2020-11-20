@@ -10,7 +10,9 @@ module.exports = {
 
 
         if (!splitValues.includes(amount)) {
-            message.channel.send("Nur Aufteilungen in: " + splitValues.toString() + " möglich.");
+            message.channel.send("Nur Aufteilungen in: " + splitValues.toString() + " möglich.").then(msg => {
+                msg.delete({ timeout: 5000 })
+              });
             return;
         }
 
@@ -47,7 +49,9 @@ module.exports = {
         moveChannels.push(startChannel);
 
         if (moveChannels.length < amount) {
-            message.channel.send("Zuwenig freie Channels verfügbar.");
+            message.channel.send("Zuwenig freie Channels verfügbar.").then(msg => {
+                msg.delete({ timeout: 5000 })
+              });
             return;
         }
 
