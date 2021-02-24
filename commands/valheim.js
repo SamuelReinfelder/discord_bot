@@ -3,15 +3,13 @@ module.exports = {
     description: 'Valheim server ip.',
     execute(message, args, client, config) {
 
-        let commands = client.commands;
-        let names = "";
-        commands.forEach(c => {
-            names = names + "__!" + c.name + "__: " + c.description + "\n";
-        });
+        let url = "http://ip-api.com/json/" + config.valheim;
 
-        let info = "**Es stehen folgende Befehle zur Verfügung**\n" + names;
-        message.channel.send(info).then(msg => {
-            msg.delete({ timeout: 10000 });
-          });
+        fetch(url)
+            .then(response => response.json())
+            .then(data =>
+                message.channel.send(data.query).then(msg => {
+                    msg.delete({ timeout: 10000 });
+                }));
     },
 };
