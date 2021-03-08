@@ -15,8 +15,8 @@ module.exports = {
         console.log(`stderr: ${stderr}`);
         return;
       }
-      output = stdout;
-      message.channel.send(output).then(
+      output = stdout.split(";");
+      message.channel.send(output[2]).then(
         msg => {
           msg.delete({ timeout: 10000 });
         }
