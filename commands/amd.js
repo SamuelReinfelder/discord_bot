@@ -16,7 +16,15 @@ module.exports = {
         return;
       }
       output = stdout.split(";");
-      message.channel.send(output[2]).then(
+      let m = "";
+      if (output[2] == "Out of Stock") {
+        m = output[0] + " aktuell nicht verfügbar.";
+      }
+      else {
+        m = output[0] + " für " + output[1] + " auf " + "https://www.amd.com/de/direct-buy/de verfügbar!!";
+      }
+
+      message.channel.send(m).then(
         msg => {
           msg.delete({ timeout: 10000 });
         }
