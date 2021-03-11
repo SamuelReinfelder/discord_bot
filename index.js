@@ -106,7 +106,7 @@ function getData(id) {
 }
 
 function amdAvailable() {
-	const child = exec("tac /home/samuel/testdata | grep -m 1 .", (error, stdout, stderr) => {
+	const child = exec("mysql -se \"select * from amd.products where name like '5900X' order by id DESC LIMIT 1;\"", (error, stdout, stderr) => {
 		if (error) {
 			console.log(`error: ${error.message}`);
 			return;
@@ -115,15 +115,15 @@ function amdAvailable() {
 			console.log(`stderr: ${stderr}`);
 			return;
 		}
-		output = stdout.split(";");
+		output = stdout.split("\t");
 
-		if (output[2] == "Out of Stock"){
+		if (output[3] == "Out of Stock"){
 			sendAmdStatus = false;
 			return;
 		}
 
 		if (!sendAmdStatus) {
-			let m = output[0] + " für " + output[1] + " auf " + "https://www.amd.com/de/direct-buy/de verfügbar!!";  
+			let m = output[1] + " für " + output[2] + " auf " + "https://www.amd.com/de/direct-buy/de verfügbar!!";  
 			client.channels.cache.find(c => c.id == "399168874777542659").send(m);
 			sendAmdStatus = true;
 		}
