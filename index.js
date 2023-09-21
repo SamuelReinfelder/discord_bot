@@ -18,11 +18,7 @@ for (const file of commandFiles) {
 
 client.login(config.token);
 
-cron.schedule('* * * * *', () => {
-	amdAvailable();
-});
-
-client.once('ready', () => {
+client.on('ready', async() => {
 
 	client.user.setStatus('invisible');
 	client.user.setUsername("Bot (!help)");
@@ -129,3 +125,9 @@ function amdAvailable() {
 		}
 	});
 }
+
+
+cron.schedule('* * * * *', () => {
+	// amdAvailable();
+	client.user.setStatus('invisible');
+});
